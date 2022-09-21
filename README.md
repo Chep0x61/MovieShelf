@@ -16,7 +16,7 @@ You will also see any lint errors in the console.
 
 ### `npm run start:api`
 
-Runs the api on json server.\
+Runs the api on json server on [http://localhost:3001](http://localhost:3000), \
 Then MovieShelter will get contents correctly on the API.
 
 ### `npm test`
