@@ -33,9 +33,9 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
     const navigate = useNavigate();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const fieldTitle: string = e.target.title;
+        const fieldName: string = e.target.name;
         const fieldValue: string = e.target.value;
-        const newField: Field = {[fieldTitle]: { value: fieldValue }};
+        const newField: Field = {[fieldName]: { value: fieldValue }};
 
         setForm({...form, ...newField});
     }
@@ -100,7 +100,7 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
             newForm = { ...newForm, ...{ title: newField }};
         }
 
-        if (!/^[0-9]{1,5}$/.test(form.mark.value)) {
+        if (!/^[1-5]{1}$/.test(form.mark.value)) {
             const errorMsg: string = 'Mark must be between 1 or 5 stars';
             const newField: Field = { value: form.mark.value, error: errorMsg, isValid: false};
 
@@ -133,16 +133,29 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
                             <div className='card-image'>
                                 <img src={content.picture} alt={content.title} style={{ width: '250px', margin: '0 auto'}}/>
                                 <span className='btn-floating halfway-fab waves-effect waves-light'>
-                                    <i onClick={deleteContent} className='material-icons'>delete</i>
+                                    <i onClick={deleteContent}className='material-icons'>delete</i>
                                 </span>
                             </div>
                         )}
-                        <div className="card-stacked"> 
+                        <div className="card-stacked">
                             <div className='card-content'>
-                                
+
+                                    {isAddForm() && (
+                                    <div className="form-group">
+                                        <label htmlFor="picture">Picture</label>
+                                        <input id="picture" name="picture" type="text" className="form-control" value={form.picture.value} onChange={e => handleInputChange(e)}></input>
+
+                                        {form.picture.error &&
+                                        <div className="card-panel red accent-1">
+                                            {form.picture.error}
+                                        </div>
+                                        }
+                                    </div>
+                                    )}
+
                                 <div className='form-group'>
-                                    <label htmlFor="Title">Title</label>
-                                    <input id="title" title="title" type="text" className="form-control" value={form.title.value} onChange={e => handleInputChange(e)}></input>
+                                    <label htmlFor="title">Title</label>
+                                    <input id="title" name="title" type="text" className="form-control" value={form.title.value} onChange={e => handleInputChange(e)}></input>
                                     {form.title.error &&
                                     <div className='card-panel red accent-1'>
                                         {form.title.error}
@@ -150,8 +163,8 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
                                     }
                                 </div>
                                 <div className='form-group'>
-                                    <label htmlFor="Published">Published</label>
-                                    <input id="published" title="published" type="number" className="form-control" value={form.published.value} onChange={e => handleInputChange(e)}></input>
+                                    <label htmlFor="published">Published</label>
+                                    <input id="published" name="published" type="number" className="form-control" value={form.published.value} onChange={e => handleInputChange(e)}></input>
                                     {form.published.error &&
                                     <div className='card-panel red accent-1'>
                                         {form.published.error}
@@ -159,22 +172,9 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
                                     }
                                 </div>
 
-                                {isAddForm() && (
-                                <div className="form-group">
-                                    <label htmlFor="picture">Picture</label>
-                                    <input id="picture" name="picture" type="text" className="form-control" value={form.picture.value} onChange={e => handleInputChange(e)}></input>
-
-                                    {form.picture.error &&
-                                    <div className="card-panel red accent-1">
-                                        {form.picture.error}
-                                    </div>
-                                    }
-                                </div>
-                                )}
-
                                 <div className='form-group'>
-                                    <label htmlFor="Mark">Mark</label>
-                                    <input id="mark" title="mark" type="text" className="form-control" value={form.mark.value} onChange={e => handleInputChange(e)}></input>
+                                    <label htmlFor="mark">Mark</label>
+                                    <input id="mark" name="mark" type="text" className="form-control" value={form.mark.value} onChange={e => handleInputChange(e)}></input>
                                     {form.mark.error &&
                                     <div className='card-panel red accent-1'>
                                         {form.mark.error}

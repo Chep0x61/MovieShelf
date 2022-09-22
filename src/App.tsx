@@ -12,7 +12,7 @@ const App: FunctionComponent = () => {
       <div>
         <nav>
           <div>
-          < Link to='/' className='brand-logo center'>Movie Shelter</Link>  
+          < Link to='/' className='brand-logo center'>Movie Shelter</Link>
           </div>
         </nav>
         <Routes>
