@@ -8,7 +8,7 @@ export default class Content {
     constructor(
      id: number,
      title: string = 'title',
-     picture: string = 'https://...',
+     picture: string = 'http://',
      mark: number = 5,
      published: number = 2022
     ) { 
