@@ -9,7 +9,7 @@ type Props = {
 };
 
 type Field = {
-    value?:any,
+    value?: any,
     error?: string,
     isValid?: boolean
 };
@@ -24,10 +24,10 @@ type Form = {
 const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
 
     const [form, setForm] = useState<Form>({
-        title: { value: content.title},
-        published: { value: content.published},
-        picture: { value: content.picture},
-        mark: { value: content.mark}
+        title: { value: content.title, isValid: true},
+        published: { value: content.published, isValid: true},
+        picture: { value: content.picture },
+        mark: { value: content.mark, isValid: true}
     });
 
     const navigate = useNavigate();
@@ -74,9 +74,10 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
         let newForm: Form = form;
 
         if (isAddForm()) {
-            const end = '.jpg';
+            const ext1 = '.jpg';
+            const ext2 = '.png';
 
-            if (!form.picture.value.endsWith(end)) {
+            if (!form.picture.value.endsWith(ext1)) {
                 const errorMsg: string = "URL not valid";
                 const newField: Field = { value: form.picture.value, error: errorMsg, isValid: false };
 
@@ -84,40 +85,40 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
             } else {
                 const newField: Field = { value: form.picture.value, error: '', isValid: true };
 
-                newForm = { ...newForm, ...{ name: newField } };
+                newForm = { ...newForm, ...{ picture: newField } };
             }
         }
 
-        if (!/^[a-zA-Zaéè0-9]{1, 30}$/.test(form.title.value)) {
+        if (!/^[0-9a-zA-Zaéèâê ]{1,25}$/.test(form.title.value)) {
             const errorMsg: string = 'You must use allowed chars';
             const newField: Field = { value: form.title.value, error: errorMsg, isValid: false};
 
-            newForm = { ...newForm, ...{ name: newField }};
+            newForm = { ...newForm, ...{ title: newField }};
         } else {
             const newField: Field = { value: form.title.value, error: '', isValid: true};
 
-            newForm = { ...newForm, ...{ name: newField }};
+            newForm = { ...newForm, ...{ title: newField }};
         }
 
         if (!/^[0-9]{1,5}$/.test(form.mark.value)) {
             const errorMsg: string = 'Mark must be between 1 or 5 stars';
             const newField: Field = { value: form.mark.value, error: errorMsg, isValid: false};
 
-            newForm = { ...newForm, ...{ name: newField }};
+            newForm = { ...newForm, ...{ mark: newField }};
         } else {
-            const newField: Field = { value: form.title.value, error: '', isValid: true};
+            const newField: Field = { value: form.mark.value, error: '', isValid: true};
 
-            newForm = { ...newForm, ...{ name: newField }};
+            newForm = { ...newForm, ...{ mark: newField }};
         }
-        if (!/^[0-9]{1900,3000}$/.test(form.published.value)) {
+        if (!/^[0-9]{4}$/.test(form.published.value)) {
             const errorMsg: string = 'Year of the publication';
             const newField: Field = { value: form.published.value, error: errorMsg, isValid: false};
 
-            newForm = { ...newForm, ...{ name: newField }};
+            newForm = { ...newForm, ...{ published: newField }};
         } else {
             const newField: Field = { value: form.published.value, error: '', isValid: true};
 
-            newForm = { ...newForm, ...{ name: newField }};
+            newForm = { ...newForm, ...{ published: newField }};
         }
         setForm(newForm);
 
@@ -160,7 +161,7 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
 
                                 {isAddForm() && (
                                 <div className="form-group">
-                                    <label htmlFor="picture">Image</label>
+                                    <label htmlFor="picture">Picture</label>
                                     <input id="picture" name="picture" type="text" className="form-control" value={form.picture.value} onChange={e => handleInputChange(e)}></input>
 
                                     {form.picture.error &&
@@ -182,7 +183,6 @@ const ContentForm: FunctionComponent<Props> = ({ content, isEditForm }) => {
                                 </div>
                             </div>
                             <div className="card-action center">
-                                {/* Submit button */}
                                 <button type="submit" className="btn">Confirm</button>
                             </div>
                         </div>
