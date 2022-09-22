@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Content from '../models/content';
-import ContentCard from '../components/movieCard';
+import ContentCard from '../components/contentCard';
 import ContentService from '../services/contentService';
 
 

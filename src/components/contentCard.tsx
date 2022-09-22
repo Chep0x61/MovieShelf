@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Content from '../models/content'
+import './contentCard.css';
 
 type Props = {
     content: Content,
@@ -33,6 +34,7 @@ const ContentCard: FunctionComponent<Props> = ({ content, borderColor = '#009688
                     <div className='card-content'>
                         <p>{content.title}</p>
                         <p>{content.published}</p>
+                        <p>{content.mark}</p>
                     </div>
                 </div>
             </div>
