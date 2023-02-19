@@ -6,13 +6,13 @@ import Detailed from "./pages/Detailed";
 import Add from "./pages/Add";
 import Edit from "./pages/Edit";
 
-const App: FunctionComponent = () => {
+const App = () => {
   return (
     <BrowserRouter>
       <div>
         <nav>
           <div>
-          < Link to='/' className='brand-logo center'>Movie Shelter</Link>
+          < Link to='/' className='brand-logo center'>MovieShelf</Link>
           </div>
         </nav>
         <Routes>
