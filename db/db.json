@@ -25,14 +25,14 @@
       "id": 8,
       "title": "Coco",
       "picture": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sZqcEV3KhDITHlUBmyj1a3RRvT9.jpg",
-      "mark": 5,
+      "mark": "3",
       "published": 2017
     },
     {
       "id": 11,
       "title": "Django Unchained",
       "picture": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hodO0759IB5LbzUiiLKB50gT2UO.jpg",
-      "mark": 5,
+      "mark": "2",
       "published": 2012
     },
     {
@@ -46,7 +46,7 @@
       "id": 1663886698386,
       "title": "Matrix",
       "picture": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pEoqbqtLc4CcwDUDqxmEDSWpWTZ.jpg",
-      "mark": 5,
+      "mark": "1",
       "published": "1999"
     },
     {
