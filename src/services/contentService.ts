@@ -13,7 +13,7 @@ export default class ContentService {
           .then(data => this.isEmpty(data) ? null : data)
           .catch(error => this.handleError(error));
       }
-    
+
     static addContent(content: Content): Promise<Content> {
       return fetch(`http://localhost:3001/contents`, {
         method: 'POST',
