@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Content from '../models/content'
 import './contentCard.css';
+import StarIcon from '@mui/icons-material/Star';
 
 type Props = {
     content: Content,
@@ -15,7 +16,6 @@ const ContentCard: FunctionComponent<Props> = ({ content, borderColor = '#009688
     const showBorder = () => {
         setColor(borderColor);
     }
-    
     const hideBorder = () => {
         setColor('#f5f5f5');
     }
@@ -23,7 +23,6 @@ const ContentCard: FunctionComponent<Props> = ({ content, borderColor = '#009688
     const goToContent = (id: number) => {
         navigate(`/contents/${id}`)
     }
-    
     return (
         <div className='col s6 m4' onClick={() => goToContent(content.id)} onMouseEnter={showBorder} onMouseLeave={hideBorder}>
             <div className='card horizontal' style={{ borderColor: color }}>
@@ -34,7 +33,13 @@ const ContentCard: FunctionComponent<Props> = ({ content, borderColor = '#009688
                     <div className='card-content'>
                         <p>{content.title}</p>
                         <p>{content.published}</p>
-                        <p>{content.mark}</p>
+                        {Array(5)
+                            .fill('')
+                            .map((_, i) => (
+                                <StarIcon key={i}  color={i < content.mark ? 'primary' : 'action' } />
+                            ))
+                        }
+
                     </div>
                 </div>
             </div>
